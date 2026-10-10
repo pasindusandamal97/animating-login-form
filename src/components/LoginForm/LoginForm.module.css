@@ -1,0 +1,184 @@
+/* ---------- Card ---------- */
+.card {
+  position: relative;
+  display: grid;
+  gap: 24px;
+  width: min(100%, 420px);
+  padding: 0 clamp(20px, 6vw, 36px) clamp(24px, 6vw, 36px);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(18px) saturate(140%);
+  animation: rise 0.7s var(--ease-out) both;
+}
+
+/* Negative margin puts the mascot on the card's top edge so its paws overlap the card. */
+.mascot {
+  width: 170px;
+  margin: -144px auto 0;
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.title {
+  font-size: clamp(1.5rem, 5vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.title:focus {
+  outline: none;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.demoHint {
+  justify-self: center;
+  margin-top: 8px;
+  padding: 4px 12px;
+  background: var(--chip-bg);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.demoHint kbd {
+  color: var(--text);
+  font-family: inherit;
+  font-weight: 700;
+}
+
+/* ---------- Form ---------- */
+.form {
+  display: grid;
+  gap: 18px;
+}
+
+.alert {
+  padding: 10px 14px;
+  background: var(--danger-bg);
+  border-left: 4px solid var(--danger);
+  border-radius: var(--radius-sm);
+  color: var(--danger);
+  font-size: 0.875rem;
+  font-weight: 600;
+  animation: rise 0.3s var(--ease-out);
+}
+
+.submit,
+.secondary {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 20px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  transition:
+    transform 0.25s var(--ease-spring),
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.submit {
+  margin-top: 4px;
+  background: var(--accent);
+  border: 0;
+  box-shadow: 0 10px 24px -12px var(--accent);
+  color: var(--on-accent);
+  font-size: 1rem;
+}
+
+.submit:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.submit:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.submit:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+.submit[data-loading='true'] {
+  cursor: progress;
+  transform: none;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid currentcolor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ---------- Success ---------- */
+.success {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  margin-top: 16px;
+  text-align: center;
+  animation: rise 0.5s var(--ease-out);
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+  background: var(--success-bg);
+  border-radius: 50%;
+  color: var(--success);
+  font-size: 1.5rem;
+  animation: pop 0.6s var(--ease-spring);
+}
+
+.secondary {
+  margin-top: 12px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+}
+
+.secondary:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ---------- Animations ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

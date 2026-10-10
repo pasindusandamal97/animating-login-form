@@ -1,0 +1,68 @@
+.page {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.main {
+  display: grid;
+  place-items: center;
+  /* Leaves room above the card for the mascot that peeks over its edge. */
+  padding: 168px 16px 32px;
+}
+
+.footer {
+  padding: 0 16px 24px;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+/* Decorative only: slow colour blobs behind the card. */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.backdrop span {
+  position: absolute;
+  width: 42vmax;
+  height: 42vmax;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: var(--blob-opacity);
+  animation: drift 24s ease-in-out infinite alternate;
+}
+
+.backdrop span:nth-child(1) {
+  top: -12vmax;
+  left: -10vmax;
+  background: var(--blob-1);
+}
+
+.backdrop span:nth-child(2) {
+  right: -14vmax;
+  bottom: -14vmax;
+  background: var(--blob-2);
+  animation-delay: -8s;
+}
+
+.backdrop span:nth-child(3) {
+  top: 30%;
+  left: 55%;
+  width: 28vmax;
+  height: 28vmax;
+  background: var(--blob-3);
+  animation-delay: -16s;
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(6vmax, 4vmax, 0) scale(1.15);
+  }
+}

@@ -1,0 +1,208 @@
+.mascot {
+  --pupil-x: 0px;
+  --pupil-y: 0px;
+
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* ---------- Materials (fur shading is in the SVG gradients) ---------- */
+.glint {
+  fill: #fff;
+  opacity: 0.92;
+}
+
+.glintSoft {
+  fill: #fff;
+  opacity: 0.45;
+}
+
+.noseShine {
+  fill: #fff;
+  opacity: 0.4;
+}
+
+/* Sockets move 70% as far as the eyes, like fabric pulled by a button. */
+.socket {
+  fill: rgb(74 42 18 / 0.28);
+  transform: translate(calc(var(--pupil-x) * 0.7), calc(var(--pupil-y) * 0.7));
+  transition: transform 0.25s var(--ease-out);
+}
+
+.stitch {
+  fill: none;
+  stroke: rgb(120 76 40 / 0.45);
+  stroke-dasharray: 2.2 2.6;
+  stroke-linecap: round;
+  stroke-width: 0.9;
+}
+
+.tufts path {
+  fill: none;
+  stroke: rgb(110 66 30 / 0.55);
+  stroke-linecap: round;
+  stroke-width: 1.4;
+}
+
+.fingers path {
+  fill: none;
+  stroke: rgb(60 34 16 / 0.55);
+  stroke-linecap: round;
+  stroke-width: 1.3;
+}
+
+.blush {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Shared thread look for the nose seam, mouth and closed happy eyes. */
+.thread,
+.happyEyes path {
+  fill: none;
+  stroke: var(--mascot-thread);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+
+.happyEyes path {
+  stroke-width: 3.4;
+}
+
+/* ---------- Moving parts ---------- */
+.head {
+  transform-box: view-box;
+  transform-origin: 100px 150px;
+  transition: transform 0.45s var(--ease-spring);
+}
+
+.eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.pupils {
+  transform: translate(var(--pupil-x), var(--pupil-y));
+  transition: transform 0.25s var(--ease-out);
+}
+
+/* Arm and paw share these classes so they move as one limb that pivots around the paw. */
+.arm {
+  transform-box: view-box;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.left {
+  transform-origin: 62px 172px;
+}
+
+.right {
+  transform-origin: 138px 172px;
+}
+
+/* ---------- Moods ---------- */
+.idle .eyes,
+.watching .eyes {
+  animation: blink 5s infinite;
+}
+
+/* Eyes follow the caret as the username grows. */
+.watching {
+  --pupil-x: calc((var(--gaze) * 2 - 1) * 5px);
+  --pupil-y: 4px;
+}
+
+.watching .head {
+  transform: rotate(calc((var(--gaze) - 0.5) * 10deg));
+}
+
+/* Paws cover the eyes while the password is hidden. */
+.shy .left {
+  transform: translate(16px, -80px) rotate(14deg);
+}
+
+.shy .right {
+  transform: translate(-16px, -80px) rotate(-14deg);
+}
+
+/* Paws drop a little to peek while the password is shown. */
+.peek .left {
+  transform: translate(16px, -60px) rotate(10deg);
+}
+
+.peek .right {
+  transform: translate(-16px, -60px) rotate(-10deg);
+}
+
+.shy .blush,
+.peek .blush,
+.happy .blush {
+  opacity: 0.85;
+}
+
+.shy .mouth,
+.happy .mouth {
+  fill: var(--mascot-thread);
+}
+
+.thinking {
+  --pupil-x: 3px;
+  --pupil-y: -5px;
+}
+
+.thinking .head {
+  transform: rotate(-4deg);
+}
+
+.happy .head {
+  animation: bounce 0.8s var(--ease-out);
+}
+
+.sad {
+  --pupil-y: 4px;
+}
+
+.sad .head {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes bounce {
+  30% {
+    transform: translateY(-12px);
+  }
+  55% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes shake {
+  20% {
+    transform: rotate(-7deg);
+  }
+  40% {
+    transform: rotate(6deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  80% {
+    transform: rotate(2deg);
+  }
+}

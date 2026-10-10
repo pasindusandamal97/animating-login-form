@@ -1,0 +1,54 @@
+.social {
+  display: grid;
+  gap: 16px;
+}
+
+.divider {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.list {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.button {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 48px;
+  background: var(--input-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 1.15rem;
+  transition:
+    transform 0.25s var(--ease-spring),
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.96);
+}
